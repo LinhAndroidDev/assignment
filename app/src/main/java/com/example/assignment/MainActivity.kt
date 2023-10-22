@@ -20,19 +20,22 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        val firstName = binding.edtFirstName.text
-        val lastName = binding.edtLastName.text
-        val birth = binding.edtBirth.text
-        val address = binding.edtAddress.text
-        val email = binding.edtEmail.text
-
         binding.buttonSelect.setOnClickListener {
             showDialogSelectDate()
         }
 
         binding.buttonRegister.setOnClickListener {
-            if(firstName.isEmpty() || lastName.isEmpty() || birth.isEmpty() || address.isEmpty() || email.isEmpty() || !binding.cbAgree.isChecked){
+            val firstName = binding.edtFirstName.text
+            val lastName = binding.edtLastName.text
+            val birth = binding.edtBirth.text
+            val address = binding.edtAddress.text
+            val email = binding.edtEmail.text
+
+            if(firstName.isEmpty() || lastName.isEmpty() || birth.isEmpty() || address.isEmpty() || email.isEmpty()
+                || !binding.cbAgree.isChecked || (!binding.radioMale.isChecked && !binding.radioFemale.isChecked)){
                 Toast.makeText(this@MainActivity, "Bạn chưa nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show()
+            }else {
+                Toast.makeText(this@MainActivity, "Bạn đã đăng kí thành công", Toast.LENGTH_SHORT).show()
             }
         }
     }
